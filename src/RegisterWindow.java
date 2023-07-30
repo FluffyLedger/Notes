@@ -21,17 +21,17 @@ public class RegisterWindow extends JFrame {
     static String Accounts = "accounts.txt";
 
     public RegisterWindow() {
-        super("Rejestracja");
+        super("Registration");
         setSize(300, 250);
 
         panel = new JPanel();
-        loginLabel = new JLabel("Podaj login");
-        passwordLabel = new JLabel("Podaj hasło");
-        confirmPasswordLabel = new JLabel("Powtórz hasło");
+        loginLabel = new JLabel("Provide login");
+        passwordLabel = new JLabel("Provide password");
+        confirmPasswordLabel = new JLabel("Repeat password");
         loginField = new JTextField(20);
         passwordField = new JPasswordField(20);
         confirmPasswordField = new JPasswordField(20);
-        registerButton = new JButton("Zarejestruj się");
+        registerButton = new JButton("Register");
 
         panel.add(loginLabel);
         panel.add(loginField);
@@ -49,15 +49,16 @@ public class RegisterWindow extends JFrame {
                 String confirmPassword = new String(confirmPasswordField.getPassword());
 
                 if (!isLoginAvailable(login)) {
-                    JOptionPane.showMessageDialog(panel, "Podany login jest już zajęty.", "Błąd", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(panel, "The login provided is already taken.", "Error", JOptionPane.ERROR_MESSAGE);
                 } else if (!password.equals(confirmPassword)) {
-                    JOptionPane.showMessageDialog(panel, "Podane hasła nie zgadzają się.", "Błąd", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(panel, "The passwords given do not match.", "Error", JOptionPane.ERROR_MESSAGE);
                 } else if (!isPasswordSecure(password)) {
-                    JOptionPane.showMessageDialog(panel, "Hasło musi zawierać przynajmniej jedną wielką literę, jedną małą literę i jeden znak specjalny.", "Błąd", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(panel, "Password must contain at least one uppercase letter, one lowercase letter and one special character.", "Error", JOptionPane.ERROR_MESSAGE);
                 } else {
                         registerAccount(login, password);
-                    JOptionPane.showMessageDialog(panel, "Konto zostało utworzone.", "Sukces", JOptionPane.INFORMATION_MESSAGE);
-                    dispose();
+                    JOptionPane.showMessageDialog(panel, "The account has been created.", "Success", JOptionPane.INFORMATION_MESSAGE);
+                    RegisterWindow.this.dispose();
+                    LoginWindow loginWindow = new LoginWindow();
                 }
             }
         });
